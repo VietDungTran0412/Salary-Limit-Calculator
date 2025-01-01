@@ -1,0 +1,23 @@
+﻿@using DevTest.Models.enums
+@using DevTest.Extensions
+@{
+    ViewData["Title"] = "Home Page";
+    var companyTypes = Enum.GetValues(typeof(Company));
+}
+
+<div class="container m-auto d-flex flex-column vh-100 justify-content-center align-items-center">
+    <h1 class="mb-4">Welcome to the Salarr Portal</h1>
+    <p class="mb-8">Please choose your corresponding company:</p>
+    <div class="border-0 p-4" style="max-width: 400px; width: 100%;">
+        <form method="post" asp-action="StartCalculate" asp-controller="Home" class="form-control">
+            <select name="companyType" id="employmentType" class="form-select shadow-sm p-3" required>
+                @foreach (Company companyType in companyTypes) 
+                { 
+                    <option value="@companyType">@companyType</option>
+                }
+            </select>
+            <button type="submit" id="navigateButton" class="btn btn-primary w-100 mt-3 shadow-sm">Start Calculate</button>
+        </form>
+    </div>
+</div>
+
